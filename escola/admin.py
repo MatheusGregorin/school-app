@@ -8,6 +8,7 @@ class Students(admin.ModelAdmin):
     list_display_links = ('id', 'name')
     list_per_page = 20
     search_fields = ('name', 'email', 'document')
+    ordering = ('name',)
 
 admin.site.register(Estudent, Students)
 
