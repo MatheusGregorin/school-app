@@ -26,11 +26,15 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
+class ResgistrationAnonRateThrottle(AnonRateThrottle):
+    rate = '5/day'
+
 class RegistrationViewSet(viewsets.ModelViewSet):
     # Permissions
     permission_classes = [IsAuthenticated]
     queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
+    throttle_classes = [AnonRateThrottle, ResgistrationAnonRateThrottle]
 
 def teste(request):
     try:
